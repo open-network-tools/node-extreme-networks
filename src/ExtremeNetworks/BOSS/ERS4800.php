@@ -102,7 +102,7 @@
                 if(preg_match("#^$#", $line, $match)){
                     $this->runningSystemUptime = false;
                     $this->configReport[$key] = true;
-                } elseif(preg_match("#^([0-9])     (.*)          (.*)#", $line, $match)){
+                } elseif(preg_match("#^([0-9]) (.*) ([0-9]+ days, ([0-9\:]+))#", $line, $match)){
                     $this->getOpenRunning()->getSystem()->addStackUnit($match[1])->setSwitchUptime($match[3]);
                     $this->configReport[$key] = true;
                 }
