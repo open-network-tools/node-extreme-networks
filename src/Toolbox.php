@@ -11,7 +11,8 @@
             foreach ($configFile as $k => $v){
                 if(preg_match("#^Switch Model: (.*)#", $v, $match)){
                     $match = str_replace(" ", "", $match);
-                    if($match[1] == "4850GTS") $model = "extremenetworks-boss-4800";
+                    if($match[1] == "4826GTS-PWR+") $model = "extremenetworks-boss-4800";
+                    elseif($match[1] == "4850GTS") $model = "extremenetworks-boss-4800";
                 }
             }
 
