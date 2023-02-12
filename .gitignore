@@ -1,0 +1,7 @@
+/.idea/
+/scripts/
+/vendor/
+
+.phpunit.result.cache
+coverage.xml
+phpunit.xml
