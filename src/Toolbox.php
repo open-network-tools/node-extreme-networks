@@ -11,8 +11,16 @@
             foreach ($configFile as $k => $v){
                 if(preg_match("#^Switch Model: (.*)#", $v, $match)){
                     $match = str_replace(" ", "", $match);
-                    if($match[1] == "4826GTS-PWR+") $model = "extremenetworks-boss-4800";
+                    if($match[1] == "3510GT-PWR+") $model = "extremenetworks-boss-3500";
+                    elseif($match[1] == "3524GT-PWR+") $model = "extremenetworks-boss-3500";
+                    elseif($match[1] == "4826GTS-PWR+") $model = "extremenetworks-boss-4800";
                     elseif($match[1] == "4850GTS") $model = "extremenetworks-boss-4800";
+                    elseif($match[1] == "4850GTS-PWR+") $model = "extremenetworks-boss-4800";
+                } elseif(preg_match("#^	ModelName          : (.*)#", $v, $match)){
+                    $match = str_replace(" ", "", $match);
+                    if($match[1] == "4450GSX-PWR+") $model = "extremenetworks-voss-4450";
+                    elseif($match[1] == "7254XTQ") $model = "extremenetworks-voss-7200";
+                    elseif($match[1] == "7254XSQ") $model = "extremenetworks-voss-7200";
                 }
             }
 
