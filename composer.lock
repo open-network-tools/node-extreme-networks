@@ -100,16 +100,16 @@
         },
         {
             "name": "open-network-tools/open-running",
-            "version": "v1.0.5",
+            "version": "v1.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/open-network-tools/open-running.git",
-                "reference": "e0fb0a7dc020e23fa534f661b21c1767320aea4c"
+                "reference": "d9a87ac781a69934d42f2d70b7c3f5b1e609bfbe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/open-network-tools/open-running/zipball/e0fb0a7dc020e23fa534f661b21c1767320aea4c",
-                "reference": "e0fb0a7dc020e23fa534f661b21c1767320aea4c",
+                "url": "https://api.github.com/repos/open-network-tools/open-running/zipball/d9a87ac781a69934d42f2d70b7c3f5b1e609bfbe",
+                "reference": "d9a87ac781a69934d42f2d70b7c3f5b1e609bfbe",
                 "shasum": ""
             },
             "require": {
@@ -139,9 +139,9 @@
             ],
             "support": {
                 "issues": "https://github.com/open-network-tools/open-running/issues",
-                "source": "https://github.com/open-network-tools/open-running/tree/v1.0.5"
+                "source": "https://github.com/open-network-tools/open-running/tree/v1.0.8"
             },
-            "time": "2023-02-12T15:18:54+00:00"
+            "time": "2023-02-12T17:44:42+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
