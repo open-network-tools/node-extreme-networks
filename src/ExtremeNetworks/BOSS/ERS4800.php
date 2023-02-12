@@ -126,8 +126,9 @@
                     $this->getOpenRunning()->getSystem()->setSwitchUptime($match[1]);
                     $this->configReport[$key] = true;
                 }
-            } elseif(preg_match("#^ 0\/ 0 ([0-9\.]+)(.*)#", $line, $match)){
-                $this->getOpenRunning()->getSystem()->setMgmtIp($match[1]);
+            }
+            if(preg_match("#^ ([0-9])\/ ([0-9]) ([0-9\.]+)#", $line, $match)){
+                $this->getOpenRunning()->getSystem()->setMgmtIp($match[3]);
                 $this->configReport[$key] = true;
             }
         }
