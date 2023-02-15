@@ -29,6 +29,7 @@
 
         static function initModel($model){
             if($model == "none") return new OpenNode();
+            elseif($model == "extremenetworks-boss-3500") return new ERS3500();
             elseif($model == "extremenetworks-boss-4800") return new ERS4800();
             else return new OpenNode();
         }
