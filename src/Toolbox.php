@@ -1,6 +1,7 @@
 <?php
     namespace OpenNetworkTools\Node;
 
+    use OpenNetworkTools\Node\ExtremeNetworks\BOSS\ERS3500;
     use OpenNetworkTools\Node\ExtremeNetworks\BOSS\ERS4800;
     use OpenNetworkTools\OpenNode;
 
