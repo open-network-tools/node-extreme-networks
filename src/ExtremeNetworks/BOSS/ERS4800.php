@@ -110,6 +110,8 @@
                 if(preg_match("#^\*\*\*\*\*MEMORY INFORMATION\*\*\*\*\*#", $line)){
                     $this->runningSystemInfo = false;
                     $this->configReport[$key] = true;
+                } elseif(preg_match("#^Operation Mode:        Switch#", $line)){
+                    $this->getOpenRunning()->getSystem()->setSizeStack(1);
                 } elseif(preg_match("#^Size Of Stack:        ([0-9]+)#", $line, $match)){
                     $this->getOpenRunning()->getSystem()->setSizeStack($match[1]);
                     $this->configReport[$key] = true;
@@ -124,6 +126,7 @@
                     $this->configReport[$key] = true;
                 } elseif(preg_match("#^sysUpTime:            (.*)#", $line, $match)){
                     $this->getOpenRunning()->getSystem()->setSwitchUptime($match[1]);
+                    if($this->getOpenRunning()->getSystem()->getSizeStack() == 1) $this->getOpenRunning()->getSystem()->addStackUnit(1)->setSwitchUptime($match[1]);
                     $this->configReport[$key] = true;
                 }
             }
