@@ -43,6 +43,13 @@
                     'port'  => $match[2]
                 ];
                 $this->configReport[$key] = true;
+            } elseif($this->runningPortInterface && preg_match("#^Port:  ([0-9]+)#", $line, $match)){
+                $this->runningPortInterfaceName = [
+                    'fpc'   => 1,
+                    'pic'   => 0,
+                    'port'  => $match[1]
+                ];
+                $this->configReport[$key] = true;
             } elseif($this->runningPortInterface && !is_null($this->runningPortInterfaceName)){
                 if(preg_match("#^    Admin Status:  (.*)#", $line, $match)){
                     $match = str_replace(" ", "", $match);
