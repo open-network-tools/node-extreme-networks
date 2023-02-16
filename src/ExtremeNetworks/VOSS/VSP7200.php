@@ -18,6 +18,7 @@
             $this->configReport = parent::analyseConfigFile($configFile, $configReport);
             foreach ($configFile as $k => $v){
                 $this->analyseShowAutotopology($k, $v);
+                $this->analyseShowSpanningTreeBPDUGuard($k, $v);
                 $this->analyseShowSysInfo($k, $v);
             }
 
@@ -74,6 +75,21 @@
                 } elseif(preg_match("#	Chassis            : (.*)#",$line, $match)){
                     $this->getOpenRunning()->getSystem()->addStackUnit(1)->setSwitchModel($match[1]);
                     $this->configReport[$key] = true;
+                }
+            }
+        }
+
+        private function analyseShowSpanningTreeBPDUGuard($key, $line){
+            if(preg_match("#^Command:(.*) show spanning-tree bpduguard#", $line, $match)){
+                $this->showSpanningTreeBPDUGuard = true;
+                $this->configReport[$key] = true;
+            } elseif(preg_match("#^Command:#", $line, $match)){
+                $this->showSpanningTreeBPDUGuard = false;
+                $this->configReport[$key] = true;
+            } elseif($this->showSpanningTreeBPDUGuard){
+                if(preg_match("#^([0-9]+)\/([0-9]+)(.*)(Up|Down)(.*)(Up|Down)#", $line, $match)){
+                    $this->getOpenRunning()->getInterfaces()->addEthernet($match[1], 0, $match[2])->setAdminStatus($match[4] == "Up" ? true : false);
+                    $this->getOpenRunning()->getInterfaces()->addEthernet($match[1], 0, $match[2])->setOperStatus($match[6] == "Up" ? true : false);
                 }
             }
         }
