@@ -93,6 +93,7 @@
                     $this->getOpenRunning()->getSystem()->addStackUnit($this->runningSystemUnit)->setPowerStatus($match[1]);
                     $this->configReport[$key] = true;
                 } elseif(preg_match("#Switch Model:         (.*)#", $line, $match)){
+                    preg_match("#([a-zA-Z]+)#", $match[1], $match);
                     $this->getOpenRunning()->getSystem()->addStackUnit($this->runningSystemUnit)->setSwitchModel($match[1]);
                     $this->configReport[$key] = true;
                 } elseif(preg_match("#Firmware Version:     (.*)#", $line, $match)){
