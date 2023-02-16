@@ -39,6 +39,9 @@
                 if(preg_match("#^0/0      ([0-9\.]+)#", $line, $match)){
                     $this->getOpenRunning()->getSystem()->setMgmtIp($match[1]);
                     $this->configReport[$key] = true;
+                } elseif(preg_match("#^1/([0-9]+)([\ ]+)([0-9\.]+)([\ ]+)([a-z0-9]+)([\ ]+)([a-z0-9]+)([\ ]+)([a-zA-Z0-9\-\+]+)#", $line, $match)){
+                    $this->getOpenRunning()->getInterfaces()->addTopology($match[9]);
+                    $this->configReport[$key] = true;
                 }
             }
         }
