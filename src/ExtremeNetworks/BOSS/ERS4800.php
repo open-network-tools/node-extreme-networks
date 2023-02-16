@@ -52,7 +52,7 @@
                 $this->configReport[$key] = true;
             } elseif($this->runningPortInterface && !is_null($this->runningPortInterfaceName)){
                 if(preg_match("#Admin Status:  (.*)#", $line, $match)){
-                    $match = str_replace(" ", "", $match);
+                    preg_match("#([a-zA-Z]+)#", $match[1], $match);
                     if($match[1] == "Enable"){
                         $this->getOpenRunning()->getInterfaces()->addEthernet($this->runningPortInterfaceName['fpc'], $this->runningPortInterfaceName['pic'], $this->runningPortInterfaceName['port'])->setAdminStatus(true);
                     } else {
@@ -61,7 +61,7 @@
 
                     $this->configReport[$key] = true;
                 } elseif(preg_match("#Oper Status:  (.*)#", $line, $match)){
-                    $match = str_replace(" ", "", $match);
+                    preg_match("#([a-zA-Z]+)#", $match[1], $match);
                     if($match[1] == "Up"){
                         $this->getOpenRunning()->getInterfaces()->addEthernet($this->runningPortInterfaceName['fpc'], $this->runningPortInterfaceName['pic'], $this->runningPortInterfaceName['port'])->setOperStatus(true);
                     } else {
