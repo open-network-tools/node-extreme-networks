@@ -51,7 +51,7 @@
                 ];
                 $this->configReport[$key] = true;
             } elseif($this->runningPortInterface && !is_null($this->runningPortInterfaceName)){
-                if(preg_match("#^    Admin Status:  (.*)#", $line, $match)){
+                if(preg_match("#Admin Status:  (.*)#", $line, $match)){
                     $match = str_replace(" ", "", $match);
                     if($match[1] == "Enable"){
                         $this->getOpenRunning()->getInterfaces()->addEthernet($this->runningPortInterfaceName['fpc'], $this->runningPortInterfaceName['pic'], $this->runningPortInterfaceName['port'])->setAdminStatus(true);
@@ -60,7 +60,7 @@
                     }
 
                     $this->configReport[$key] = true;
-                } elseif(preg_match("#^    Oper Status:  (.*)#", $line, $match)){
+                } elseif(preg_match("#Oper Status:  (.*)#", $line, $match)){
                     $match = str_replace(" ", "", $match);
                     if($match[1] == "Up"){
                         $this->getOpenRunning()->getInterfaces()->addEthernet($this->runningPortInterfaceName['fpc'], $this->runningPortInterfaceName['pic'], $this->runningPortInterfaceName['port'])->setOperStatus(true);
@@ -86,22 +86,22 @@
                 $this->runningSystemUptime = true;
                 $this->configReport[$key] = true;
             } elseif($this->runningSystemUnit && $this->runningSystemUnit){
-                if(preg_match("#^Serial Number:        (.*)#", $line, $match)){
+                if(preg_match("#Serial Number:        (.*)#", $line, $match)){
                     $this->getOpenRunning()->getSystem()->addStackUnit($this->runningSystemUnit)->setSerialNumber($match[1]);
                     $this->configReport[$key] = true;
-                } elseif(preg_match("#^Power Status:         (.*)#", $line, $match)){
+                } elseif(preg_match("#Power Status:         (.*)#", $line, $match)){
                     $this->getOpenRunning()->getSystem()->addStackUnit($this->runningSystemUnit)->setPowerStatus($match[1]);
                     $this->configReport[$key] = true;
-                } elseif(preg_match("#^Switch Model:         (.*)#", $line, $match)){
+                } elseif(preg_match("#Switch Model:         (.*)#", $line, $match)){
                     $this->getOpenRunning()->getSystem()->addStackUnit($this->runningSystemUnit)->setSwitchModel($match[1]);
                     $this->configReport[$key] = true;
-                } elseif(preg_match("#^Firmware Version:     (.*)#", $line, $match)){
+                } elseif(preg_match("#Firmware Version:     (.*)#", $line, $match)){
                     $this->getOpenRunning()->getSystem()->addStackUnit($this->runningSystemUnit)->setVersionFirmware($match[1]);
                     $this->configReport[$key] = true;
-                } elseif(preg_match("#^Software Version:     (.*)#", $line, $match)){
+                } elseif(preg_match("#Software Version:     (.*)#", $line, $match)){
                     $this->getOpenRunning()->getSystem()->addStackUnit($this->runningSystemUnit)->setVersionSoftware($match[1]);
                     $this->configReport[$key] = true;
-                } elseif(preg_match("#^Fan \#([0-9]) Status:        (.*)#", $line, $match)){
+                } elseif(preg_match("#Fan \#([0-9]) Status:        (.*)#", $line, $match)){
                     $this->getOpenRunning()->getSystem()->addStackUnit($this->runningSystemUnit)->addFanStatus($match[1], $match[2]);
                     $this->configReport[$key] = true;
                 }
@@ -117,21 +117,21 @@
                 if(preg_match("#^\*\*\*\*\*MEMORY INFORMATION\*\*\*\*\*#", $line)){
                     $this->runningSystemInfo = false;
                     $this->configReport[$key] = true;
-                } elseif(preg_match("#^Operation Mode:        Switch#", $line)){
+                } elseif(preg_match("#Operation Mode:        Switch#", $line)){
                     $this->getOpenRunning()->getSystem()->setSizeStack(1);
-                } elseif(preg_match("#^Size Of Stack:        ([0-9]+)#", $line, $match)){
+                } elseif(preg_match("#Size Of Stack:        ([0-9]+)#", $line, $match)){
                     $this->getOpenRunning()->getSystem()->setSizeStack($match[1]);
                     $this->configReport[$key] = true;
-                } elseif(preg_match("#^Base Unit:            ([0-9]+)#", $line, $match)){
+                } elseif(preg_match("#Base Unit:            ([0-9]+)#", $line, $match)){
                     $this->getOpenRunning()->getSystem()->setBaseUnitStack($match[1]);
                     $this->configReport[$key] = true;
-                } elseif(preg_match("#^sysName:              (.*)#", $line, $match)){
+                } elseif(preg_match("#sysName:              (.*)#", $line, $match)){
                     $this->getOpenRunning()->getSystem()->setSysName($match[1]);
                     $this->configReport[$key] = true;
-                } elseif(preg_match("#^Installed license:     (.*)#", $line, $match)){
+                } elseif(preg_match("#Installed license:     (.*)#", $line, $match)){
                     $this->getOpenRunning()->getSystem()->addInstalledLicence($match[1]);
                     $this->configReport[$key] = true;
-                } elseif(preg_match("#^sysUpTime:            (.*)#", $line, $match)){
+                } elseif(preg_match("#sysUpTime:            (.*)#", $line, $match)){
                     $this->getOpenRunning()->getSystem()->setSwitchUptime($match[1]);
                     if($this->getOpenRunning()->getSystem()->getSizeStack() == 1) $this->getOpenRunning()->getSystem()->addStackUnit(1)->setSwitchUptime($match[1]);
                     $this->configReport[$key] = true;
