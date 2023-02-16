@@ -12,8 +12,10 @@
         static function determineModel($configFile){
             $model = "none";
             foreach ($configFile as $k => $v){
-                if(preg_match("#^Switch Model: (.*)#", $v, $match)){
+                if(preg_match("#Switch Model: (.*)#", $v, $match)){
                     $match = str_replace(" ", "", $match);
+                    preg_match("#([a-zA-Z0-9\-\+]+)#", $match[1], $match);
+
                     if($match[1] == "3510GT-PWR+") $model = "extremenetworks-boss-3500";
                     elseif($match[1] == "3524GT-PWR+") $model = "extremenetworks-boss-3500";
                     elseif($match[1] == "4826GTS-PWR+") $model = "extremenetworks-boss-4800";
