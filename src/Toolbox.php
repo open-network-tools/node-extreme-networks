@@ -4,6 +4,7 @@
     use OpenNetworkTools\Node\ExtremeNetworks\BOSS\ERS3500;
     use OpenNetworkTools\Node\ExtremeNetworks\BOSS\ERS4800;
     use OpenNetworkTools\Node\ExtremeNetworks\VOSS\VSP4450;
+    use OpenNetworkTools\Node\ExtremeNetworks\VOSS\VSP7200;
     use OpenNetworkTools\OpenNode;
 
     class Toolbox {
@@ -34,6 +35,7 @@
             elseif($model == "extremenetworks-boss-3500") return new ERS3500();
             elseif($model == "extremenetworks-boss-4800") return new ERS4800();
             elseif($model == "extremenetworks-voss-4450") return new VSP4450();
+            elseif($model == "extremenetworks-voss-7200") return new VSP7200();
             else return new OpenNode();
         }
 
