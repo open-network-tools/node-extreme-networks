@@ -8,6 +8,7 @@
         private $configReport;
         private $showAutotopology = false;
         private $showSoftware = false;
+        private $showSpanningTreeBPDUGuard = false;
         private $showSysInfo = false;
 
         public function __construct() {
